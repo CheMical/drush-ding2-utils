@@ -566,9 +566,9 @@ function _ding2_utils_parse_info_file($filename) {
 }
 
 /**
- * Implements hook_drush_make_validate_info
+ * Implements hook_make_validate_info
  */
-function ding2_utils_drush_make_validate_info($info) {
+function ding2_utils_make_validate_info($info) {
   if (drush_get_option('ding2-dev', FALSE)) {
     drush_log(dt("Checking out HEAD revisions of Ding 2 repositories."), 'ok');
 
