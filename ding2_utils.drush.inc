@@ -578,7 +578,12 @@ function ding2_utils_make_validate_info($info) {
         // Only mess with repos from the right organisations on
         // github. The [/:] makes this work with both http and git
         // protocol specifications.
-        if (preg_match('{github\.com[/:](ding2|dbcdk)/}i', $spec['download']['url'])) {
+        $organisations = 'ding2|dbcdk';
+        if (drush_shell_exec('git config --get github.user')){
+          $github_user = drush_shell_exec_output();
+          $organisations .= '|' . strtolower($github_user[0]);
+        }
+        if (preg_match("{github\.com[/:]($organisations)/}i", $spec['download']['url'])) {
           $what = NULL;
           // Unset any tag or revision specifications. We'll leave any
           // branch specifications.
