@@ -595,7 +595,7 @@ function ding2_utils_make_validate_info($info) {
             $what = (empty($what) ? '' : ' and ') . 'revision';
             unset($spec['download']['revision']);
           }
-          if (preg_match('{github\.com[/:]ding2/ding2\.git}i', $spec['download']['url'])) {
+          if (preg_match("{github\.com[/:]($organisations)/ding2\.git}i", $spec['download']['url'])) {
             $spec['download']['branch'] = 'dev';
             drush_log(dt('Dev branch @who', array('@who' => $name)), 'debug');
           }
